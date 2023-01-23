@@ -23,6 +23,7 @@
     "@types/react-dom": "18.0.10",
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
+    "autoprefixer": "^10.4.13",
     "eslint": "8.32.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-cod3rocket": "^1.0.3",
@@ -36,7 +37,9 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
+    "postcss": "^8.4.21",
     "prettier": "^2.8.3",
+    "tailwindcss": "^3.2.4",
     "typescript": "4.9.4"
   }
 }
