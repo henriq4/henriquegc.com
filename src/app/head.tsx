@@ -1,3 +1,3 @@
 export default function Head() {
-  return <title>Hi</title>;
+  return <title>Henrique GC</title>;
 }
