@@ -1,12 +1,37 @@
-// b1f0e5e001a5496aa5b203730750ce6d
-
-// secret_TUyIosSi7KkYvzxMUVKmlfz2YranHIhVnhlVIyUpz7M
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { notionClient } from 'lib/config/notion';
+import { blockQueryObject } from 'lib/models/notion';
 
 const fetchNotion = async () => {
-  const res = await fetch('http://localhost:3000/api/notion');
-  const data = await res.json();
+  // const { results: databaseQueryResultsRaw } =
+  //   await notionClient.databases.query({
+  //     database_id: databaseId,
+  //   });
 
-  return data;
+  // const databasePages = await notionClient.pages.retrieve({
+  //   page_id: pageId,
+  // });
+
+  const { results: blockQueryResultsRaw } =
+    await notionClient.blocks.children.list({
+      block_id: 'cad8309c-2e58-476a-8fa0-9203f8e106bd',
+    });
+
+  const blockQueryResultsParsed: blockQueryObject[] = blockQueryResultsRaw.map(
+    blockContent => {
+      // @ts-ignore
+      const { type, id } = blockContent;
+      const content = blockContent[type];
+
+      return {
+        id,
+        type,
+        content,
+      };
+    },
+  );
+
+  return blockQueryResultsParsed;
 };
 
 export default async function Page() {
@@ -14,7 +39,13 @@ export default async function Page() {
 
   return (
     <div className="h-screen flex justify-center items-center">
-      <h1>Ola</h1>
+      {data.map(e => {
+        return (
+          <h1 key={e.id} className="block">
+            {e.type}
+          </h1>
+        );
+      })}
     </div>
   );
 }
