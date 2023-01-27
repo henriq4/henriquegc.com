@@ -1,17 +1,34 @@
-import { Client } from '@notionhq/client';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { notionClient, notionDatabaseId } from 'lib/config/notion.ts';
+import { blockQueryObject } from 'lib/models/notion';
 import { NextApiRequest, NextApiResponse } from 'next';
-
-const notion = new Client({
-  auth: 'secret_RIW5jEJ2zvhnaJrZQJpGrx6G1pBrqkNwNJELpNV0GdO',
-});
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const query = await notion.blocks.children.list({
-    block_id: 'cad8309c-2e58-476a-8fa0-9203f8e106bd',
-  });
+  const { results: databaseQueryResultsRaw } =
+    await notionClient.databases.query({
+      database_id: notionDatabaseId,
+    });
 
-  res.status(201).json(query.results);
+  const { results: blockQueryResultsRaw } =
+    await notionClient.blocks.children.list({
+      block_id: 'cad8309c-2e58-476a-8fa0-9203f8e106bd',
+    });
+
+  const blockQueryResultsParsed: blockQueryObject[] = blockQueryResultsRaw.map(
+    blockContent => {
+      // @ts-ignore
+      const { type } = blockContent;
+      const content = blockContent[type];
+
+      return {
+        type,
+        content,
+      };
+    },
+  );
+
+  res.status(201).json(blockQueryResultsParsed);
 }
