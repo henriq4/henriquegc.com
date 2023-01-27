@@ -1,2 +1,2 @@
 export * as authentication from './authentication';
-export * from './blockQuery';
+export type { blockQueryObject, blockQueryTypes } from './blockQuery';

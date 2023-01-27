@@ -9,14 +9,11 @@ const blockQueryEnum = z.enum([
   'quote',
   'bulleted_list_item',
   'numbered_list_item',
-  'to_do',
-  'toggle',
   'code',
   'embed',
   'image',
   'video',
   'file',
-  'pdf',
   'bookmark',
   'equation',
   'divider',
@@ -26,101 +23,97 @@ const blockQueryEnum = z.enum([
 type blockQueryTypes = z.infer<typeof blockQueryEnum>;
 
 interface paragraph {
+  id: string;
   type: blockQueryTypes;
   content: object;
 }
 
 interface heading_1 {
+  id: string;
   type: blockQueryTypes;
   content: object;
 }
 
 interface heading_2 {
+  id: string;
   type: blockQueryTypes;
   content: object;
 }
 
 interface heading_3 {
+  id: string;
   type: blockQueryTypes;
   content: object;
 }
 
 interface callout {
+  id: string;
   type: blockQueryTypes;
   content: object;
 }
 
 interface quote {
+  id: string;
   type: blockQueryTypes;
   content: object;
 }
 
 interface bulleted_list_item {
+  id: string;
   type: blockQueryTypes;
   content: object;
 }
 
 interface numbered_list_item {
-  type: blockQueryTypes;
-  content: object;
-}
-
-interface to_do {
-  type: blockQueryTypes;
-  content: object;
-}
-
-interface toggle {
+  id: string;
   type: blockQueryTypes;
   content: object;
 }
 
 interface code {
+  id: string;
   type: blockQueryTypes;
   content: object;
 }
 
 interface embed {
+  id: string;
   type: blockQueryTypes;
   content: object;
 }
 
 interface image {
+  id: string;
   type: blockQueryTypes;
   content: object;
 }
 
 interface video {
+  id: string;
   type: blockQueryTypes;
   content: object;
 }
 
 interface file {
-  type: blockQueryTypes;
-  content: object;
-}
-
-interface pdf {
+  id: string;
   type: blockQueryTypes;
   content: object;
 }
 
 interface bookmark {
+  id: string;
   type: blockQueryTypes;
   content: object;
 }
 
 interface equation {
+  id: string;
   type: blockQueryTypes;
   content: object;
 }
 
 interface divider {
-  type: blockQueryTypes;
-  content: object;
-}
-
-interface table {
+  id: string;
   type: blockQueryTypes;
   content: object;
 }
@@ -134,17 +127,13 @@ type blockQueryObject =
   | quote
   | bulleted_list_item
   | numbered_list_item
-  | to_do
-  | toggle
   | code
   | embed
   | image
   | video
   | file
-  | pdf
   | bookmark
   | equation
-  | divider
-  | table;
+  | divider;
 
 export type { blockQueryObject, blockQueryTypes };
