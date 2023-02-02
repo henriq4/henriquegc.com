@@ -1,5 +1,5 @@
 import { Client } from '@notionhq/client';
-import { authentication } from 'lib/models/notion';
+import { authentication } from 'lib/models/cms/notion';
 
 const notionSecret = authentication.notionSecret.parse(
   process.env.NOTION_SECRET,
