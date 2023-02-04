@@ -1,25 +1,19 @@
+/* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { notionClient } from 'lib/config/notion';
-import { blockQueryObject } from 'lib/models/notion';
+// @ts-nocheck
+import { Paragraph } from 'lib/components/cms/Paragraph';
+import { notionClient, notionDatabaseId } from 'lib/config/cms/notion';
+import { notionBlockObject } from 'lib/models/cms/notion';
+import { notionParagraphToParagraph } from 'lib/notionToIndex';
 
 const fetchNotion = async () => {
-  // const { results: databaseQueryResultsRaw } =
-  //   await notionClient.databases.query({
-  //     database_id: databaseId,
-  //   });
-
-  // const databasePages = await notionClient.pages.retrieve({
-  //   page_id: pageId,
-  // });
-
   const { results: blockQueryResultsRaw } =
     await notionClient.blocks.children.list({
       block_id: 'cad8309c-2e58-476a-8fa0-9203f8e106bd',
     });
 
-  const blockQueryResultsParsed: blockQueryObject[] = blockQueryResultsRaw.map(
+  const blockQueryResultsParsed: notionBlockObject[] = blockQueryResultsRaw.map(
     blockContent => {
-      // @ts-ignore
       const { type, id } = blockContent;
       const content = blockContent[type];
 
@@ -31,21 +25,29 @@ const fetchNotion = async () => {
     },
   );
 
-  return blockQueryResultsParsed;
+  const test = (blockQueryResObj: blockQueryObject[]) => {
+    const indents = [];
+
+    for (let i = 0; i < blockQueryResObj.length; i += 1) {
+      if (blockQueryResObj[i].type === 'paragraph') {
+        const aaa = notionParagraphToParagraph(blockQueryResObj[i]);
+
+        indents.push(<Paragraph id={aaa.id} text={aaa.text} key={aaa.id} />);
+      }
+    }
+
+    return <div>{indents}</div>;
+  };
+
+  return test(blockQueryResultsParsed);
 };
 
 export default async function Page() {
   const data = await fetchNotion();
 
   return (
-    <div className="h-screen flex justify-center items-center flex-col">
-      {data.map(e => {
-        return (
-          <h1 key={e.id} className="block">
-            {e.type}
-          </h1>
-        );
-      })}
+    <div className="h-screen flex justify-center items-center flex-col gap-12">
+      {data}
     </div>
   );
 }
