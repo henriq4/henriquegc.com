@@ -1,5 +1,5 @@
 {
-  "name": "monorepo",
+  "name": "henriquegc-dev",
   "version": "0.0.0",
   "private": true,
   "workspaces": [
@@ -17,9 +17,9 @@
     "prettier": "latest",
     "turbo": "latest"
   },
+  "dependencies": {},
   "engines": {
     "node": ">=14.0.0"
   },
-  "dependencies": {},
   "packageManager": "pnpm@7.22.0"
 }
