@@ -19,7 +19,7 @@
   },
   "dependencies": {},
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=18.12.1"
   },
   "packageManager": "pnpm@7.22.0"
 }
