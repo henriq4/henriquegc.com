@@ -1,4 +1,4 @@
-import 'lib/styles/global.css';
+import "lib/styles/global.css";
 
 interface IRootLayoutProps {
   children: React.ReactNode;
