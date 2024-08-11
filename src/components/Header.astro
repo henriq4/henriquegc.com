@@ -1,0 +1,45 @@
+<header x-data="{ open: false }" class="p-4 border-b border-b-gray-200">
+  <div class="container mx-auto flex items-center justify-between my-2">
+    <div class="text-2xl font-bold">MyLogo</div>
+
+    <div class="hidden md:flex space-x-4">
+      <a href="#" class="hover:bg-gray-100 px-3 py-2 rounded">Projects</a>
+      <a href="#" class="hover:bg-gray-100 px-3 py-2 rounded">Blog</a>
+      <a href="#">
+        <button
+          class="w-1/2 px-5 py-2 text-sm tracking-wide transition-colors duration-200 bg-blue-50 rounded-full shrink-0 sm:w-auto -blue-500 -600"
+        >
+          Book a call
+        </button>
+      </a>
+    </div>
+
+    <button @click="open = !open" class="md:hidden">
+      <svg
+        class="w-6
+      h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16m-7 6h7"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div
+    x-show="open"
+    @click.away="open = false"
+    class="md:hidden bg-gray-100 h-screen absolute w-screen top-20 left-0"
+  >
+    <a href="#" class="block hover:bg-gray-200 p-2">Home</a>
+    <a href="#" class="block hover:bg-gray-200 p-2">About</a>
+    <a href="#" class="block hover:bg-gray-200 p-2">Services</a>
+    <a href="#" class="block hover:bg-gray-200 p-2">Contact</a>
+  </div>
+</header>

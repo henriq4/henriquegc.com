@@ -1,30 +1,22 @@
 ---
-import { getCollection } from 'astro:content';
-
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-
-const projects = (await getCollection('projects')).sort(
-	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
-)
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Projects from "@/components/Projects/ProjectSection.astro";
+import BlogSection from "@/components/Blog/BlogSection.astro";
 ---
 
 <Layout title="Henrique GC">
-	<main>
-		<h1 class="text-sm font-bold">
-			Hello world!
-		</h1>
+  <Header />
 
-		<div>
-			{
-					projects.map((project) => (
-						<li>
-							<a class="card" href={`/projects/${project.slug}`}>
-								<span class="title">{project.data.title}</span>
-							</a>
-						</li>
-					))
-				}
-		</div>
-	</main>
+  <main>
+    <Hero />
+
+    <Projects />
+
+    <BlogSection />
+
+    <Footer />
+  </main>
 </Layout>
