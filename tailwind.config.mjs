@@ -15,6 +15,14 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        header: ["Lexend", ...defaultTheme.fontFamily.sans],
+      },
+      colors: {
+        title: "#0f172a",
+        description: "#374b68",
+      },
+      fontSize: {
+        header: ["3.75rem", "4.5rem"],
       },
     },
   },
