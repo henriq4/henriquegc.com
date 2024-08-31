@@ -1,0 +1,44 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+
+import Layout from "../../layouts/Layout.astro";
+
+interface Props {
+  entry: CollectionEntry<"posts">;
+}
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((entry) => ({
+    params: { slug: entry.data },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.data.render();
+---
+
+<Layout title={entry.data.title}>
+  <div class="stack gap-20">
+    <div class="stack gap-15">
+      <header>
+        <div class="wrapper stack gap-2">
+          <a class="back-link" href="/posts/">Posts</a>
+        </div>
+      </header>
+      <main class="wrapper">
+        <div class="stack gap-10 content">
+          {
+            entry.data.img && (
+              <img src={entry.data.img} alt={entry.data.img_alt || ""} />
+            )
+          }
+          <div class="content">
+            <Content />
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</Layout>
