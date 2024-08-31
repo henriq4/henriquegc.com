@@ -1,38 +1,52 @@
-<div class="w-full h-full bg-blue-50 rounded-xl grid grid-cols-3">
-  <div class="col-span-1 flex-1 flex items-start flex-col my-16 ml-12">
-    <span>Project</span>
+---
+import * as Icon from "@astropub/icons";
+import { Image } from "astro:assets";
 
-    <h4 class="my-4 text-2xl">São Paulo Mais Perto</h4>
+interface Props {
+  tag: string;
+  title: string;
+  description: string;
+  imageSource: string;
+  imageAlt: string;
+  href: string;
+}
 
-    <p class="text-slate-700">
-      I helped Horizons in Perspective develop a new branding and website
-      experience, as well as an engaging product design for their bi-annual
-      journal publication.
-    </p>
+const { tag, title, description, href, imageSource, imageAlt } = Astro.props;
+---
 
-    <a href="#" class="mt-20 text-blue-600">
-      <span class="flex gap-2">
-        View Proejct
+<div
+  class="w-full h-full bg-blue-50 rounded-xl grid grid-cols-3 space-x-12 pt-8"
+>
+  <div
+    class="col-span-1 flex-1 flex items-start justify-between flex-col my-16 ml-12"
+  >
+    <div class="flex flex-col gap-2">
+      <span>{tag}</span>
 
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          class="w-4"
-          ><path
-            fill-rule="evenodd"
-            d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-            clip-rule="evenodd"></path></svg
-        >
-      </span>
+      <h4 class="text-2xl">{title}</h4>
+
+      <p class="text-slate-700 mt-2">
+        {description}
+      </p>
+    </div>
+
+    <a href={href} class="text-blue-600 flex items-center gap-2">
+      <span class="flex gap-2"> View Proejct </span>
+      <Icon.ArrowTopRight size="18" />
     </a>
   </div>
 
-  <div class="col-span-2 flex flex-1 items-end justify-end">
-    <img
-      src="https://jane-next-obfuscated-preview.vercel.app/_next/image?url=%2Fimages%2Fcase_studies%2Fcase-study-01.jpg&w=750&q=75"
-      alt="Alt project"
-      class="rounded-tl-xl rounded-br-xl mt-12"
-    />
+  <div
+    class="col-span-2 flex flex-1 items-end mt-8 justify-end rounded-tl-xl rounded-br-xl overflow-hidden"
+  >
+    <a href={href}>
+      <Image
+        src={imageSource}
+        alt={imageAlt}
+        class="rounded-tl-xl rounded-br-xl transition-transform duration-500 ease-in-out transform hover:scale-105"
+        width="1000"
+        height="1000"
+      />
+    </a>
   </div>
 </div>

@@ -3,18 +3,41 @@ import ProjectSectionCard from "./ProjectSectionCard.astro";
 ---
 
 <section
-  class="container mx-auto flex items-center justify-between my-12 gap-16 flex-col"
+  class="container flex items-center justify-between my-12 mx-auto gap-16 flex-col"
 >
   <div class="w-full flex items-center justify-center flex-col mt-20 mb-12">
-    <h2 class="text-2xl">Check out my latest work</h2>
+    <h2 class="text-5xl font-bold font-header text-title">
+      Check out my latest work
+    </h2>
 
-    <p class="max-w-96 text-center text-sm">
-      My goal is to create effective digital experiences that make people’s
+    <p class="max-w-[28rem] text-center text-lg text-description mt-5">
+      My goal is to create effective digital experiences that make people's
       lives easier and better. I hope my work is a reflection of this.
     </p>
   </div>
 
-  <ProjectSectionCard />
-  <ProjectSectionCard />
-  <ProjectSectionCard />
+  <ProjectSectionCard
+    title="São Paulo Mais Perto"
+    description="Short hand description to tell whats is going on to the project bla bla bla..."
+    href="/projects/spmp"
+    imageAlt="Imagem alt"
+    imageSource="https://jane-next-obfuscated-preview.vercel.app/_next/image?url=%2Fimages%2Fcase_studies%2Fcase-study-01.jpg&w=750&q=75"
+    tag="Desenvolvimento"
+  />
+  <ProjectSectionCard
+    title="São Paulo Mais Perto"
+    description="Short hand description to tell whats is going on to the project bla bla bla..."
+    href="/projects/spmp"
+    imageAlt="Imagem alt"
+    imageSource="https://jane-next-obfuscated-preview.vercel.app/_next/image?url=%2Fimages%2Fcase_studies%2Fcase-study-01.jpg&w=750&q=75"
+    tag="Desenvolvimento"
+  />
+  <ProjectSectionCard
+    title="São Paulo Mais Perto"
+    description="Short hand description to tell whats is going on to the project bla bla bla..."
+    href="/projects/spmp"
+    imageAlt="Imagem alt"
+    imageSource="https://jane-next-obfuscated-preview.vercel.app/_next/image?url=%2Fimages%2Fcase_studies%2Fcase-study-01.jpg&w=750&q=75"
+    tag="Desenvolvimento"
+  />
 </section>
