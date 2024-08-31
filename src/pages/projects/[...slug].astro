@@ -1,18 +1,20 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection } from "astro:content";
 
-import Layout from '../../layouts/Layout.astro';
+import Layout from "../../layouts/Layout.astro";
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
 
 interface Props {
-	entry: CollectionEntry<'projects'>;
+  entry: CollectionEntry<"projects">;
 }
 
 export async function getStaticPaths() {
-	const projects = await getCollection('projects');
-	return projects.map((entry) => ({
-		params: { slug: entry.slug },
-		props: { entry },
-	}));
+  const projects = await getCollection("projects");
+  return projects.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
 }
 
 const { entry } = Astro.props;
@@ -20,21 +22,58 @@ const { Content } = await entry.render();
 ---
 
 <Layout title={entry.data.title}>
-	<div class="stack gap-20">
-		<div class="stack gap-15">
-			<header>
-				<div class="wrapper stack gap-2">
-					<a class="back-link" href="/projects/">Projects</a>
-				</div>
-			</header>
-			<main class="wrapper">
-				<div class="stack gap-10 content">
-					{entry.data.img && <img src={entry.data.img} alt={entry.data.img_alt || ''} />}
-					<div class="content">
-						<Content />
-					</div>
-				</div>
-			</main>
-		</div>
-	</div>
+  <Header />
+
+  <main>
+    <div class="flex items-center flex-col justify-between my-24">
+      <div class="container mx-auto">
+        <h1 class="text-header font-header text-title font-semibold">
+          Helping businesses turn their ideas into reality
+        </h1>
+
+        <div class="mt-10 flex gap-6">
+          <button
+            class="w-1/2 px-4 py-2 text-sm leading-5 tracking-wide text-gray-800 transition-colors duration-200 bg-blue-50 rounded-full border border-blue-100 shrink-0 sm:w-auto hover:bg-blue-100 -blue-50 -100"
+          >
+            Book a call with me
+          </button>
+
+          <button
+            class="w-1/2 px-4 py-2 text-sm leading-5 tracking-wide text-gray-800 transition-colors duration-200 bg-blue-50 rounded-full border border-blue-100 shrink-0 sm:w-auto hover:bg-blue-100 -blue-50 -100"
+          >
+            Book a call with me
+          </button>
+        </div>
+      </div>
+
+      <img src="/me.jpg" class="w-full h-[36rem] my-16" />
+
+      <div class="container mx-auto">
+        <div class="grid grid-cols-3 space-x-12">
+          <div class="col-span-1 flex flex-col">
+            <div>
+              <h3>Client</h3>
+              <p>
+                A Bi-Annual Journal of Insights and Ideas on the Frontiers of
+                Innovation and Creativity
+              </p>
+            </div>
+          </div>
+          <div class="col-span-2">
+            <div>
+              <h2 class="text-xl mb-4">
+                I helped Horizons in Perspective develop a new branding and
+                website experience, as well as an engaging product design for
+                their bi-annual journal publication.
+              </h2>
+
+              <Content />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <Footer />
+  </main>
 </Layout>
