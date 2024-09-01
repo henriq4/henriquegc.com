@@ -10,13 +10,13 @@ interface Props {
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
   return posts.map((entry) => ({
-    params: { slug: entry.data },
+    params: { slug: entry.slug },
     props: { entry },
   }));
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.data.render();
+const { Content } = await entry.render();
 ---
 
 <Layout title={entry.data.title}>
