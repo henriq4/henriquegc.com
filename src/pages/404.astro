@@ -1,43 +1,20 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import Link from "@components/Link.astro";
+import BackToPrevious from "@components/BackToPrevious.astro";
+import { SITE } from "@consts";
 ---
 
-<Layout title="404">
-  <section>
-    <div
-      class="container flex items-center justify-center h-screen px-6 py-12 -my-10 mx-auto"
-    >
-      <div class="w-full">
-        <div class="flex flex-col items-center max-w-lg mx-auto text-center">
-          <p class="text-sm font-extrabold text-blue-500">404</p>
-
-          <h1 class="mt-3 text-2xl font-semibold text-gray-800 md:text-3xl">
-            Código 200, onde está você?
-          </h1>
-
-          <p class="mt-4 text-gray-500">
-            Parece que a sua página não retornou o status esperado, talvez você
-            esteja procurando o sucesso no lugar errado, que tal...
-          </p>
-
-          <div class="flex items-center w-full mt-6 gap-x-3 shrink-0 sm:w-auto">
-            <a href="/">
-              <button
-                class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-full gap-x-2 sm:w-auto -gray-800 -900 hover:bg-gray-100 -700"
-                >Ir para o início
-              </button>
-            </a>
-
-            <a href="/">
-              <button
-                class="w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-full shrink-0 sm:w-auto hover:bg-blue-600 -blue-500 -600"
-              >
-                Agendar uma conversa
-              </button>
-            </a>
-          </div>
-        </div>
-      </div>
+<Layout title="404" description={SITE.DESCRIPTION}>
+  <Container>
+    <div class="mt-16 grid place-items-center gap-3">
+      <h4 class="animate text-2xl font-semibold text-black dark:text-white">
+        404: Page not found
+      </h4>
+      <span class="animate">
+        <BackToPrevious href="/">Go to home page</BackToPrevious>
+      </span>
     </div>
-  </section>
+  </Container>
 </Layout>

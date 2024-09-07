@@ -1,104 +1,67 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
-
-import Layout from "../../layouts/Layout.astro";
-
-import Footer from "@/components/Footer.astro";
-import Header from "@/components/Header.astro";
-
-interface Props {
-  entry: CollectionEntry<"projects">;
-}
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import FormattedDate from "@components/FormattedDate.astro";
+import { readingTime } from "@lib/utils";
+import BackToPrevious from "@components/BackToPrevious.astro";
+import Link from "@components/Link.astro";
+import TableOfContents from "@components/TableOfContents.astro";
 
 export async function getStaticPaths() {
-  const projects = await getCollection("projects");
-  return projects.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
+  const projects = (await getCollection("projects"))
+    .filter((post) => !post.data.draft)
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: project,
   }));
 }
+type Props = CollectionEntry<"projects">;
 
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+const project = Astro.props;
+const { Content, headings } = await project.render();
 ---
 
-<Layout title={entry.data.title}>
-  <Header />
-
-  <main>
-    <div class="flex items-center flex-col justify-between my-24">
-      <div class="container mx-auto">
-        <h1 class="text-header font-header text-title font-semibold">
-          Helping businesses turn their ideas into reality
-        </h1>
-
-        <div class="mt-10 flex gap-6">
-          <button
-            class="w-1/2 px-4 py-2 text-sm leading-5 tracking-wide text-gray-800 transition-colors duration-200 bg-blue-50 rounded-full border border-blue-100 shrink-0 sm:w-auto hover:bg-blue-100 -blue-50 -100"
-          >
-            Book a call with me
-          </button>
-
-          <button
-            class="w-1/2 px-4 py-2 text-sm leading-5 tracking-wide text-gray-800 transition-colors duration-200 bg-blue-50 rounded-full border border-blue-100 shrink-0 sm:w-auto hover:bg-blue-100 -blue-50 -100"
-          >
-            Book a call with me
-          </button>
-        </div>
-      </div>
-
-      <img src="/me.jpg" class="w-full h-[36rem] my-16" />
-
-      <div class="container mx-auto px-20">
-        <div class="grid grid-cols-3 space-x-12">
-          <div class="col-span-1 flex flex-col gap-9">
-            <div class="flex flex-col gap-3">
-              <h3 class="text-xl leading-4 text-title">Client</h3>
-              <p class="text-description text-sm leading-8">
-                A Bi-Annual Journal of Insights and Ideas on the Frontiers of
-                Innovation and Creativity
-              </p>
-            </div>
-
-            <div class="flex flex-col gap-3">
-              <h3 class="text-xl leading-4 text-title">Client</h3>
-              <p class="text-description text-sm leading-8">
-                A Bi-Annual Journal of Insights and Ideas on the Frontiers of
-                Innovation and Creativity
-              </p>
-            </div>
-
-            <div class="flex flex-col gap-3">
-              <h3 class="text-xl leading-4 text-title">Client</h3>
-              <p class="text-description text-sm leading-8">
-                A Bi-Annual Journal of Insights and Ideas on the Frontiers of
-                Innovation and Creativity
-              </p>
-            </div>
-
-            <div class="flex flex-col gap-3">
-              <h3 class="text-xl leading-4 text-title">Client</h3>
-              <p class="text-description text-sm leading-8">
-                A Bi-Annual Journal of Insights and Ideas on the Frontiers of
-                Innovation and Creativity
-              </p>
-            </div>
-          </div>
-          <div class="col-span-2">
-            <div>
-              <h2 class="text-2xl font-semibold mb-4 text-title">
-                I helped Horizons in Perspective develop a new branding
-              </h2>
-
-              <p class="text-description leading-8">
-                {(<Content />)}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+<Layout title={project.data.title} description={project.data.description}>
+  <Container>
+    <div class="animate">
+      <BackToPrevious href="/projects">Back to projects</BackToPrevious>
     </div>
-
-    <Footer />
-  </main>
+    <div class="animate my-10 space-y-1">
+      <div class="flex items-center gap-1.5">
+        <div class="font-base text-sm">
+          <FormattedDate date={project.data.date} />
+        </div>
+        &bull;
+        <div class="font-base text-sm">
+          {readingTime(project.body)}
+        </div>
+      </div>
+      <h1 class="text-3xl font-semibold text-black dark:text-white">
+        {project.data.title}
+      </h1>
+      {
+        (project.data.demoURL || project.data.repoURL) && (
+          <nav class="flex gap-1">
+            {project.data.demoURL && (
+              <Link href={project.data.demoURL} external>
+                demo
+              </Link>
+            )}
+            {project.data.demoURL && project.data.repoURL && <span>/</span>}
+            {project.data.repoURL && (
+              <Link href={project.data.repoURL} external>
+                repo
+              </Link>
+            )}
+          </nav>
+        )
+      }
+    </div>
+    <TableOfContents headings={headings} />
+    <article class="animate">
+      <Content />
+    </article>
+  </Container>
 </Layout>

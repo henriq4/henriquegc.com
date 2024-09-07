@@ -1,51 +1,46 @@
-<header x-data="{ open: false }" class="p-4 border-b border-b-gray-200">
-  <div class="container mx-auto flex items-center justify-between my-2">
-    <a href="/"><div class="text-2xl font-bold">.hGC</div></a>
+---
+import Container from "@components/Container.astro";
+import Link from "@components/Link.astro";
+import { SITE } from "@consts";
+---
 
-    <div class="hidden md:flex space-x-4">
-      <a href="/about" class="hover:bg-gray-100 px-3 py-2 rounded">About</a>
-      <a href="/projects" class="hover:bg-gray-100 px-3 py-2 rounded"
-        >Projects</a
-      >
-      <a href="/blog" class="hover:bg-gray-100 px-3 py-2 rounded">Blog</a>
-    </div>
-
-    <div class="hidden md:flex">
-      <a href="#">
+<header transition:persist>
+  <Container>
+    <div class="flex flex-wrap justify-between gap-y-2">
+      <Link href="/" underline={false}>
+        <div class="font-semibold">
+          {SITE.TITLE}&nbsp;🔬
+        </div>
+      </Link>
+      <nav class="flex items-center gap-1 text-sm">
+        <Link href="/blog">blog</Link>
+        <span>
+          {`/`}
+        </span>
+        <Link href="/projects">projects</Link>
+        <span>
+          {`/`}
+        </span>
         <button
-          class="w-1/2 px-5 py-3 text-sm tracking-wide transition-colors duration-200 bg-blue-100 rounded-full shrink-0 sm:w-auto -blue-500 -600"
+          id="magnifying-glass"
+          aria-label="Search"
+          class="flex items-center rounded border border-black/15 bg-neutral-100 px-2 py-1 text-xs transition-colors duration-300 ease-in-out hover:bg-black/5 hover:text-black focus-visible:bg-black/5 focus-visible:text-black dark:border-white/20 dark:bg-neutral-900 dark:hover:bg-white/5 dark:hover:text-white dark:focus-visible:bg-white/5 dark:focus-visible:text-white"
         >
-          Book a call
+          <svg
+            height="16"
+            stroke-linejoin="round"
+            viewBox="0 0 16 16"
+            width="16"
+            style="color: currentcolor;"
+            ><path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M3.5 7C3.5 5.067 5.067 3.5 7 3.5C8.933 3.5 10.5 5.067 10.5 7C10.5 7.88461 10.1718 8.69256 9.63058 9.30876L9.30876 9.63058C8.69256 10.1718 7.88461 10.5 7 10.5C5.067 10.5 3.5 8.933 3.5 7ZM9.96544 11.0261C9.13578 11.6382 8.11014 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2C9.76142 2 12 4.23858 12 7C12 8.11014 11.6382 9.13578 11.0261 9.96544L14.0303 12.9697L14.5607 13.5L13.5 14.5607L12.9697 14.0303L9.96544 11.0261Z"
+              fill="currentColor"></path></svg
+          >
+          &nbsp;Search
         </button>
-      </a>
+      </nav>
     </div>
-
-    <button @click="open = !open" class="md:hidden">
-      <svg
-        class="w-6
-      h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 6h16M4 12h16m-7 6h7"></path>
-      </svg>
-    </button>
-  </div>
-
-  <div
-    x-show="open"
-    @click.away="open = false"
-    class="md:hidden bg-gray-100 h-screen absolute w-screen top-20 left-0"
-  >
-    <a href="#" class="block hover:bg-gray-200 p-2">Home</a>
-    <a href="#" class="block hover:bg-gray-200 p-2">About</a>
-    <a href="#" class="block hover:bg-gray-200 p-2">Services</a>
-    <a href="#" class="block hover:bg-gray-200 p-2">Contact</a>
-  </div>
+  </Container>
 </header>

@@ -1,25 +1,29 @@
 ---
-interface Props {
-  title: string;
-}
+import Head from "@components/Head.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import PageFind from "@components/PageFind.astro";
+import { SITE } from "@consts";
 
-const { title } = Astro.props;
+type Props = {
+  title: string;
+  description: string;
+};
+
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <meta charset="UTF-8" />
-    <meta name="description" content="Henrique GC Portfolio" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-
-    <title>{title}</title>
+    <Head title={`${title} | ${SITE.TITLE}`} description={description} />
   </head>
-
-  <body class="bg-[#fafafa]">
-    <slot />
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <PageFind />
   </body>
 </html>
