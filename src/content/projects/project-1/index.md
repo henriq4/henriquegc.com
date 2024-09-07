@@ -12,7 +12,7 @@ Astro Sphere is a static, minimalist, lightweight, lightning fast portfolio and 
 
 It is primarily Astro, Tailwind and Typescript, with a very small amount of SolidJS for stateful components.
 
-## 🚀 Deploy your own
+## Deploy your own
 
 <div class="flex gap-2">
   <a target="_blank" aria-label="Deploy with Vercel" href="https://vercel.com/new/clone?repository-url=https://github.com/markhorn-dev/astro-sphere">
@@ -23,7 +23,7 @@ It is primarily Astro, Tailwind and Typescript, with a very small amount of Soli
   </a>
 </div>
 
-## 📋 Features
+## Features
 
 - ✅ 100/100 Lighthouse performance
 - ✅ Responsive
@@ -40,23 +40,23 @@ It is primarily Astro, Tailwind and Typescript, with a very small amount of Soli
 - ✅ MDX Support (components in your markdown)
 - ✅ Searchable content (posts and projects)
 
-## 💯 Lighthouse score
+## Lighthouse score
 
 ![Astro Sphere Lighthouse Score](/lighthouse-nano.jpg)
 
-## 🕊️ Lightweight
+## Lightweight
 
 All pages under 100kb (including fonts)
 
-## ⚡︎ Fast
+## Fast
 
 Rendered in ~40ms on localhost
 
-## 📄 Configuration
+## Configuration
 
 The blog posts on the demo serve as the documentation and configuration.
 
-## 💻 Commands
+## Commands
 
 All commands are run from the root of the project, from a terminal:
 
@@ -74,6 +74,6 @@ Replace npm with your package manager of choice. `npm`, `pnpm`, `yarn`, `bun`, e
 | `npm run lint`            | Run ESLint                                        |
 | `npm run lint:fix`        | Auto-fix ESLint issues                            |
 
-## 🏛️ License
+## License
 
 MIT
