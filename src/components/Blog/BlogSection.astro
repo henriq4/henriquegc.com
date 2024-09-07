@@ -3,20 +3,20 @@ import BlogSectionCard from "./BlogSectionCard.astro";
 ---
 
 <section
-  class="container mx-auto flex items-center justify-between my-12 gap-16 flex-col"
+  class="container mx-auto flex items-center justify-between my-8 lg:my-12 gap-16 flex-col px-4 lg:px-0"
 >
   <div class="w-full flex items-center justify-center flex-col mt-20 mb-12">
-    <h2 class="text-5xl font-bold font-header text-title">
+    <h2 class="text-5xl font-bold font-header text-title text-center">
       Check out my latest work
     </h2>
 
     <p class="max-w-[28rem] text-center text-lg text-description mt-5">
-      My goal is to create effective digital experiences that make people’s
+      My goal is to create effective digital experiences that make people's
       lives easier and better. I hope my work is a reflection of this.
     </p>
   </div>
 
-  <div class="grid grid-cols-3 w-full gap-x-8">
+  <div class="grid grid-cols-1 md:grid-cols-3 w-full gap-x-6 gap-y-8">
     <BlogSectionCard
       title="Post n° 1"
       description="Short hand description to tell whats is going on to the project bla bla bla..."

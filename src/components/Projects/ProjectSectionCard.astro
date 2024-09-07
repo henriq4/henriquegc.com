@@ -15,7 +15,7 @@ const { tag, title, description, href, imageSource, imageAlt } = Astro.props;
 ---
 
 <div
-  class="w-full h-full bg-blue-50 rounded-xl grid grid-cols-3 space-x-12 pt-8"
+  class="w-full h-full bg-blue-50 rounded-xl grid grid-cols-1 lg:grid-cols-3 space-x-12 lg:pt-8"
 >
   <div
     class="col-span-1 flex-1 flex items-start justify-between flex-col my-16 ml-12"
@@ -37,7 +37,7 @@ const { tag, title, description, href, imageSource, imageAlt } = Astro.props;
   </div>
 
   <div
-    class="col-span-2 flex flex-1 items-end mt-8 justify-end rounded-tl-xl rounded-br-xl overflow-hidden"
+    class="col-span-1 md:col-span-2 flex flex-1 items-end lg:mt-8 justify-end rounded-tl-xl rounded-br-xl overflow-hidden"
   >
     <a href={href}>
       <Image

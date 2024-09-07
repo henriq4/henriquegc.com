@@ -2,6 +2,7 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 
 import Layout from "../../layouts/Layout.astro";
+
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 
@@ -48,12 +49,36 @@ const { Content } = await entry.render();
 
       <img src="/me.jpg" class="w-full h-[36rem] my-16" />
 
-      <div class="container mx-auto">
+      <div class="container mx-auto px-20">
         <div class="grid grid-cols-3 space-x-12">
-          <div class="col-span-1 flex flex-col">
-            <div>
-              <h3>Client</h3>
-              <p>
+          <div class="col-span-1 flex flex-col gap-9">
+            <div class="flex flex-col gap-3">
+              <h3 class="text-xl leading-4 text-title">Client</h3>
+              <p class="text-description text-sm leading-8">
+                A Bi-Annual Journal of Insights and Ideas on the Frontiers of
+                Innovation and Creativity
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-3">
+              <h3 class="text-xl leading-4 text-title">Client</h3>
+              <p class="text-description text-sm leading-8">
+                A Bi-Annual Journal of Insights and Ideas on the Frontiers of
+                Innovation and Creativity
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-3">
+              <h3 class="text-xl leading-4 text-title">Client</h3>
+              <p class="text-description text-sm leading-8">
+                A Bi-Annual Journal of Insights and Ideas on the Frontiers of
+                Innovation and Creativity
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-3">
+              <h3 class="text-xl leading-4 text-title">Client</h3>
+              <p class="text-description text-sm leading-8">
                 A Bi-Annual Journal of Insights and Ideas on the Frontiers of
                 Innovation and Creativity
               </p>
@@ -61,13 +86,13 @@ const { Content } = await entry.render();
           </div>
           <div class="col-span-2">
             <div>
-              <h2 class="text-xl mb-4">
-                I helped Horizons in Perspective develop a new branding and
-                website experience, as well as an engaging product design for
-                their bi-annual journal publication.
+              <h2 class="text-2xl font-semibold mb-4 text-title">
+                I helped Horizons in Perspective develop a new branding
               </h2>
 
-              <Content />
+              <p class="text-description leading-8">
+                {(<Content />)}
+              </p>
             </div>
           </div>
         </div>
