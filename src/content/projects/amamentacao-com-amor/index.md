@@ -1,12 +1,12 @@
 ---
-title: "Astro Sphere"
+title: "Amamentação com Amor"
 description: "Portfolio and blog build with astro."
 date: "03/18/2024"
 demoURL: "https://astro-sphere-demo.vercel.app"
 repoURL: "https://github.com/markhorn-dev/astro-sphere"
 ---
 
-![Astro Sphere](/astro-sphere.jpg)
+![Astro Sphere Image](/astro-sphere.jpg)
 
 Astro Sphere is a static, minimalist, lightweight, lightning fast portfolio and blog theme based on Mark Horn's personal website.
 
@@ -38,7 +38,6 @@ It is primarily Astro, Tailwind and Typescript, with a very small amount of Soli
 - ✅ Auto generated RSS Feed
 - ✅ Markdown support
 - ✅ MDX Support (components in your markdown)
-- ✅ Searchable content (posts and projects)
 
 ## Lighthouse score
 
