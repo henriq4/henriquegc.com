@@ -1,0 +1,26 @@
+---
+const { title, subtitle, company, hasGap } = Astro.props;
+---
+
+<div class="flex">
+  <div class="education__time">
+    <span class="mt-3 block h-2 w-2 rounded-full bg-gray-300"></span>
+    <span class="education__line ml-[3px] block h-full w-[2px] bg-gray-300"
+    ></span>
+  </div>
+
+  <div class=`experience__data bd-grid px-5 w-full ${hasGap ? 'mb-6' : ''}`>
+    <h4 class="mb-1 mt-0 font-semibold">{title}</h4>
+    <span class="flex justify-between text-sm font-light">
+      <span>
+        {company}
+      </span>
+      <span>
+        {subtitle}
+      </span>
+    </span>
+    <p class="my-2 text-justify">
+      <slot />
+    </p>
+  </div>
+</div>

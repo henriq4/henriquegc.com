@@ -27,9 +27,13 @@ const years = Object.keys(posts).sort((a, b) => parseInt(b) - parseInt(a));
 
 <Layout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>
   <Container>
-    <aside data-pagefind-ignore>
+    <aside>
       <div class="space-y-10">
-        <div class="space-y-4">
+        <div class="animate font-semibold text-black dark:text-white">Blog</div>
+
+        <p>In progress..</p>
+
+        <!-- <div class="space-y-4">
           {
             years.map((year) => (
               <section class="animate space-y-4">
@@ -48,7 +52,7 @@ const years = Object.keys(posts).sort((a, b) => parseInt(b) - parseInt(a));
               </section>
             ))
           }
-        </div>
+        </div> -->
       </div>
     </aside>
   </Container>

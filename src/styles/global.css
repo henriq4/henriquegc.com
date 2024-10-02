@@ -118,3 +118,8 @@ pre {
 .copy-code:active {
   @apply scale-90 transition-transform;
 }
+
+.time-line-container > div:last-child .education__time > .education__line {
+  display: none;
+  margin: 0px;
+}

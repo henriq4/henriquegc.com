@@ -31,11 +31,21 @@ export const PROJECTS: Metadata = {
 
 export const SOCIALS: Socials = [
   {
+    ICON: "/icons/github.png",
+    ICON_DARK: "/icons/github-dark.png",
     NAME: "GitHub",
     HREF: "https://github.com/henriq4",
   },
   {
+    ICON: "/icons/linkedin.png",
+    ICON_DARK: "/icons/linkedin.png",
     NAME: "LinkedIn",
+    HREF: "https://www.linkedin.com/in/henriq4",
+  },
+  {
+    ICON: "/icons/curriculum.png",
+    ICON_DARK: "/icons/curriculum-dark.png",
+    NAME: "Curriculum",
     HREF: "https://www.linkedin.com/in/henriq4",
   },
 ];

@@ -12,6 +12,8 @@ export type Metadata = {
 };
 
 export type Socials = {
+  ICON: string;
+  ICON_DARK: string;
   NAME: string;
   HREF: string;
 }[];
