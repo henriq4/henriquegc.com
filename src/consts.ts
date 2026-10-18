@@ -31,6 +31,5 @@ export const SOCIALS: Socials = [
   { NAME: "email", HREF: `mailto:${SITE.EMAIL}` },
   { NAME: "linkedin", HREF: "https://www.linkedin.com/in/henriq4" },
   { NAME: "github", HREF: "https://github.com/henriq4" },
-  // TODO: add public/resume.pdf, this link 404s until then
-  { NAME: "résumé", HREF: "/resume.pdf" },
+  { NAME: "résumé", HREF: "https://www.linkedin.com/in/henriq4" },
 ];

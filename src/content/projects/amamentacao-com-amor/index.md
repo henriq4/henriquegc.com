@@ -1,8 +1,6 @@
 ---
 title: "Amamentação com Amor"
-role: "[role]"
-description: "[Project] One-line summary of what this project is and your part in it."
+role: "creator and developer · side project"
+description: "Side project. I came up with the idea and built it."
 date: "03/18/2024"
 ---
-
-[Project] Write-up coming soon: the problem, what you built, and how it went.
