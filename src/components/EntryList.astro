@@ -1,0 +1,27 @@
+---
+import { type CollectionEntry } from "astro:content";
+
+type Props = { entries: (CollectionEntry<"projects"> | CollectionEntry<"blog">)[] };
+
+const { entries } = Astro.props;
+const fmt = (d: Date) => d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+---
+
+{entries.length === 0 && <p class="muted">Nothing here yet.</p>}
+<ul class="list">
+  {
+    entries.map((e) => (
+      <li>
+        <span>
+          <a href={`/${e.collection}/${e.slug}`}>
+            <strong>{e.data.title}</strong>
+          </a>
+          {"role" in e.data && e.data.role && <span class="muted"> · {e.data.role}</span>}
+        </span>
+        <span class="right">
+          {e.collection === "projects" ? e.data.date.getFullYear() : fmt(e.data.date)}
+        </span>
+      </li>
+    ))
+  }
+</ul>

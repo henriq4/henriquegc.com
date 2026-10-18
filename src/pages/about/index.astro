@@ -1,141 +1,46 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import Container from "@components/Container.astro";
-import { SITE, HOME, SOCIALS, ABOUT } from "@consts";
-import TimelineElement from "@components/TimelineElement.astro";
-import Link from "@components/Link.astro";
+import Socials from "@components/Socials.astro";
+import { ABOUT } from "@consts";
+
+const experience = [
+  { name: "Bitzen Tecnologia", role: "software engineer", years: "2024–now" },
+  { name: "São Paulo Mais Perto", role: "project lead", years: "2022–now" },
+  { name: "SetupJr", role: "CTO", years: "2022–2024" },
+  { name: "Star Formação", role: "web developer", years: "2021–2022" },
+];
 ---
 
 <Layout title={ABOUT.TITLE} description={ABOUT.DESCRIPTION}>
-  <Container>
-    <aside>
-      <div class="space-y-16">
-        <section class="mt-4">
-          <article class="space-y-4">
-            <span class="animate">
-              <div class="flex items-start justify-between gap-8">
-                <img src="/brand/me.jpg" class="h-96 rounded" />
-              </div>
+  <img src="/brand/me.jpg" alt="Henrique GC" class="portrait" width="96" height="96" />
+  <h1>Hi, I'm <span class="marker">Henrique</span>.</h1>
+  <p>
+    I'm a backend software engineer in Brazil. I've worked as an engineer, a project lead and a CTO, and I like the
+    part of the job where architecture and people meet.
+  </p>
+  <p>
+    I work mostly in Java and Spring, and also Node.js, NestJS, Laravel, React and Flutter. I speak English
+    professionally and Portuguese natively.
+  </p>
+
+  <section>
+    <h2 class="label">Experience</h2>
+    <ul class="list">
+      {
+        experience.map((x) => (
+          <li>
+            <span>
+              <strong>{x.name}</strong>
+              <span class="muted"> · {x.role}</span>
             </span>
-          </article>
-        </section>
+            <span class="right">{x.years}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 
-        <section class="animate">
-          <h2 class="font-semibold text-black dark:text-white">
-            My carrer journey
-          </h2>
-          <article>
-            <div class="time-line-container mt-[1.5em]">
-              <TimelineElement
-                title="Software Engineer"
-                subtitle="Jan 2024 ~ present"
-                company="Bitzen Tecnologia"
-                hasGap
-              >
-                I work as a full stack developer allocated to differents B2B
-                projects
-              </TimelineElement>
-
-              <TimelineElement
-                title="Project Lead"
-                subtitle="Mar 2022 ~ present"
-                company="São Paulo Mais Perto"
-                hasGap
-                >I served as the lead developer, responsible for planning the
-                project's architecture and technology.
-              </TimelineElement>
-
-              <TimelineElement
-                title="CTO"
-                subtitle="Aug 2022 ~ Aug 2024"
-                company="SetupJr"
-                hasGap
-                >As CEO, I managed teams to develop websites for clients and
-                internal service applications
-              </TimelineElement>
-
-              <TimelineElement
-                title="Web developer"
-                subtitle="Jun 2021 ~ set 2022"
-                company="Star Formação Profissional & TI"
-              >
-                I worked as a web application developer for internal websites.
-              </TimelineElement>
-            </div>
-          </article>
-        </section>
-
-        <!-- <section class="animate mt-2">
-          <h2 class="font-semibold text-black dark:text-white">Technologies</h2>
-          <article>
-            <p>
-              If you want to get in touch with me about something or just to say
-              hi, reach out on social media or send me an email.
-            </p>
-          </article>
-        </section> -->
-
-        <section class="animate -mt-2">
-          <h2 class="font-semibold text-black dark:text-white">Languages</h2>
-          <article>
-            <ul>
-              <li>
-                <strong>English</strong>: Professional working proficiency
-              </li>
-              <li>
-                <strong>Brazilian portuguese</strong>: Native or bilingual
-                proficiency
-              </li>
-            </ul>
-          </article>
-        </section>
-
-        <section class="animate -mt-2">
-          <h2 class="font-semibold text-black dark:text-white">
-            Let's Connect
-          </h2>
-          <article>
-            <p>
-              If you want to get in touch with me about something or just to say
-              hi, reach out on social media or send me an email.
-            </p>
-            <span class="animate flex gap-1">
-              {
-                SOCIALS.map((SOCIAL) => (
-                  <li class="flex gap-x-1 text-nowrap">
-                    <img
-                      class="h-4 w-4 dark:hidden"
-                      src={SOCIAL.ICON}
-                      alt="Light Image"
-                    />
-                    <img
-                      class="hidden h-4 w-4 dark:block"
-                      src={SOCIAL.ICON_DARK}
-                      alt="Dark Image"
-                    />
-                    <Link
-                      href={SOCIAL.HREF}
-                      external
-                      aria-label={`${SITE.TITLE} on ${SOCIAL.NAME}`}
-                    >
-                      {SOCIAL.NAME}
-                    </Link>
-                    {"/"}
-                  </li>
-                ))
-              }
-              <li class="line-clamp-1">
-                <Link
-                  href={`mailto:${SITE.EMAIL}`}
-                  aria-label={`Email ${SITE.TITLE}`}
-                >
-                  {SITE.EMAIL}
-                </Link>
-              </li>
-            </span>
-          </article>
-        </section>
-      </div>
-    </aside>
-  </Container>
+  <section>
+    <Socials />
+  </section>
 </Layout>

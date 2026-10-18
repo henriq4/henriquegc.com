@@ -14,6 +14,7 @@ const projects = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
+    role: z.string().optional(),
     description: z.string(),
     date: z.coerce.date(),
     draft: z.boolean().optional(),
