@@ -1,60 +1,31 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
-import Container from "@components/Container.astro";
-import FormattedDate from "@components/FormattedDate.astro";
-import BackToPrevious from "@components/BackToPrevious.astro";
-import Link from "@components/Link.astro";
+import { readingTime } from "@lib/utils";
 
 export async function getStaticPaths() {
-  const projects = (await getCollection("projects"))
-    .filter((post) => !post.data.draft)
-    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-  return projects.map((project) => ({
-    params: { slug: project.slug },
-    props: project,
-  }));
+  const projects = await getCollection("projects", (e) => !e.data.draft);
+  return projects.map((project) => ({ params: { slug: project.slug }, props: project }));
 }
 type Props = CollectionEntry<"projects">;
 
 const project = Astro.props;
-const { Content, headings } = await project.render();
+const { Content } = await project.render();
+const { title, role, description, date, demoURL, repoURL } = project.data;
 ---
 
-<Layout title={project.data.title} description={project.data.description}>
-  <Container>
-    <div class="animate">
-      <BackToPrevious href="/projects">Back to projects</BackToPrevious>
-    </div>
-    <div class="animate my-10 space-y-1">
-      <div class="flex items-center gap-1.5">
-        <div class="font-base text-sm">
-          <FormattedDate date={project.data.date} />
-        </div>
-      </div>
-      <h1 class="text-3xl font-semibold text-black dark:text-white">
-        {project.data.title}
-      </h1>
-      {
-        (project.data.demoURL || project.data.repoURL) && (
-          <nav class="flex gap-1">
-            {project.data.demoURL && (
-              <Link href={project.data.demoURL} external>
-                demo
-              </Link>
-            )}
-            {project.data.demoURL && project.data.repoURL && <span>/</span>}
-            {project.data.repoURL && (
-              <Link href={project.data.repoURL} external>
-                repo
-              </Link>
-            )}
-          </nav>
-        )
-      }
-    </div>
-    <article class="animate">
-      <Content />
-    </article>
-  </Container>
+<Layout title={title} description={description}>
+  <p class="meta">{date.getFullYear()}{role && ` · ${role}`} · {readingTime(project.body)}</p>
+  <h1>{title}</h1>
+  <p class="lead">{description}</p>
+  {
+    (demoURL || repoURL) && (
+      <nav class="links">
+        {demoURL && <a href={demoURL}>demo</a>}
+        {repoURL && <a href={repoURL}>repo</a>}
+      </nav>
+    )
+  }
+  <article class="prose"><Content /></article>
+  <p><a href="/projects">← all work</a></p>
 </Layout>

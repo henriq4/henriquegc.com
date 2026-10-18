@@ -1,130 +1,29 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import Container from "@components/Container.astro";
-import { SITE, HOME, SOCIALS } from "@consts";
-import ArrowCard from "@components/ArrowCard.astro";
-import Link from "@components/Link.astro";
+import EntryList from "@components/EntryList.astro";
+import Socials from "@components/Socials.astro";
+import { HOME } from "@consts";
+import { byDate } from "@lib/utils";
 import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
 
-const blog = (await getCollection("blog"))
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE);
-
-const projects: CollectionEntry<"projects">[] = (
-  await getCollection("projects")
-)
-  .filter((project) => !project.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
+const projects = (await getCollection("projects", (e) => !e.data.draft)).sort(byDate);
+const posts = (await getCollection("blog", (e) => !e.data.draft)).sort(byDate);
 ---
 
 <Layout title={HOME.TITLE} description={HOME.DESCRIPTION}>
-  <Container>
-    <aside data-pagefind-ignore>
-      <h1 class="animate font-semibold text-black dark:text-white">
-        Henrique's Portfolio
-      </h1>
-      <div class="space-y-16">
-        <section>
-          <article class="space-y-4">
-            <span class="animate">
-              <p>
-                Hello, my name is <strong>Henrique GC</strong>, and I am a
-                backend software engineer with <strong
-                  >4 years of experience</strong
-                >. I specialize in software architecture, team leadership, and
-                developing high-quality software solutions.
-              </p>
-              <p>
-                Currently, I am a <strong>Backend Java Specialist</strong>,
-                focusing on building <strong>Spring-based APIs</strong>. I also
-                bring experience in frontend and mobile development.
-              </p>
-              <p>
-                In addition to Spring, I have experience working with
-                technologies like Laravel, Node.js, NestJS, Flutter, and
-                ReactJS, enabling me to contribute a <strong
-                  >full-stack perspective</strong
-                > to my projects.
-              </p>
-            </span>
-            <span class="animate flex gap-1">
-              {
-                SOCIALS.map((SOCIAL) => (
-                  <li class="flex gap-x-1 text-nowrap">
-                    <img
-                      class="h-4 w-4 dark:hidden"
-                      src={SOCIAL.ICON}
-                      alt="Light Image"
-                    />
-                    <img
-                      class="hidden h-4 w-4 dark:block"
-                      src={SOCIAL.ICON_DARK}
-                      alt="Dark Image"
-                    />
-                    <Link
-                      href={SOCIAL.HREF}
-                      external
-                      aria-label={`${SITE.TITLE} on ${SOCIAL.NAME}`}
-                    >
-                      {SOCIAL.NAME}
-                    </Link>
-                    {"/"}
-                  </li>
-                ))
-              }
-              <li class="line-clamp-1">
-                <Link
-                  href={`mailto:${SITE.EMAIL}`}
-                  aria-label={`Email ${SITE.TITLE}`}
-                >
-                  {SITE.EMAIL}
-                </Link>
-              </li>
-            </span>
-          </article>
-        </section>
+  <h1>
+    Software engineer who designs backends and <span class="marker">leads the teams</span> that build them.
+  </h1>
+  <p>Java and Spring, mostly. Engineer, project lead and CTO so far. Based in Brazil, open to remote roles.</p>
+  <Socials />
 
-        <!-- <section class="animate space-y-6">
-          <div class="flex flex-wrap items-center justify-between gap-y-2">
-            <h2 class="font-semibold text-black dark:text-white">
-              Recent projects
-            </h2>
-            <Link href="/projects"> See all projects </Link>
-          </div>
-          <ul class="not-prose flex flex-col gap-4">
-            {
-              projects.map((project) => (
-                <li>
-                  <ArrowCard entry={project} />
-                </li>
-              ))
-            }
-          </ul>
-        </section> -->
+  <section>
+    <h2 class="label">Work</h2>
+    <EntryList entries={projects} />
+  </section>
 
-        <!-- <section class="animate space-y-6">
-          <div class="flex flex-wrap items-center justify-between gap-y-2">
-            <h2 class="font-semibold text-black dark:text-white">
-              Latest posts
-            </h2>
-            <Link href="/blog"> See all posts </Link>
-          </div>
-          <ul class="not-prose flex flex-col gap-4">
-            {
-              blog.map((post) => (
-                <li>
-                  <ArrowCard entry={post} />
-                </li>
-              ))
-            }
-          </ul>
-        </section> -->
-
-        <section class="animate space-y-4"></section>
-      </div>
-    </aside>
-  </Container>
+  <section>
+    <h2 class="label">Writing</h2>
+    <EntryList entries={posts} />
+  </section>
 </Layout>

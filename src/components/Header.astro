@@ -1,25 +1,21 @@
 ---
-import Container from "@components/Container.astro";
-import Link from "@components/Link.astro";
+const path = Astro.url.pathname;
+const nav = [
+  { href: "/projects", label: "work" },
+  { href: "/blog", label: "writing" },
+  { href: "/about", label: "about" },
+];
 ---
 
-<header transition:persist>
-  <Container>
-    <div class="flex flex-wrap justify-between gap-y-2">
-      <Link href="/" underline={false}>
-        <div class="font-semibold">hGC</div>
-      </Link>
-      <nav class="flex items-center gap-1 text-sm">
-        <Link href="/about">about</Link>
-        <span>
-          {`/`}
-        </span>
-        <Link href="/blog">blog</Link>
-        <span>
-          {`/`}
-        </span>
-        <Link href="/projects">projects</Link>
-      </nav>
-    </div>
-  </Container>
+<header>
+  <a href="/" class="brand"><span class="logo">h</span>henrique gc</a>
+  <nav>
+    {
+      nav.map((n) => (
+        <a href={n.href} aria-current={path.startsWith(n.href) ? "page" : undefined}>
+          {n.label}
+        </a>
+      ))
+    }
+  </nav>
 </header>
