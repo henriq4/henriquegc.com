@@ -99,21 +99,10 @@ header nav a[aria-current="page"] {
 
 /* footer */
 footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 8px;
+  text-align: center;
   margin-top: 72px;
   font-size: 14px;
   color: #737373;
-}
-
-.motto {
-  font-family: "Caveat", cursive;
-  font-weight: 600;
-  font-size: 22px;
-  color: #525252;
 }
 
 /* link row */
